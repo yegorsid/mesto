@@ -1,0 +1,13 @@
+.form__input-container {
+  width: 358px;
+  margin: 0 auto;
+  padding: 0 0 48px 0;
+  border: 0;
+}
+
+@media screen and (max-width: 450px) {
+  .form__input-container {
+    padding: 0 0 45px 0;
+    width: calc(100% - 44px);
+  }
+}
