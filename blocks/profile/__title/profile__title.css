@@ -8,17 +8,12 @@
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 336px;
+  white-space: nowrap;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 540px) {
   .profile__title {
     font-size: 17px;
     padding-top: 14px;
-  }
-}
-
-@media screen and (max-width: 519px) {
-  .profile__title {
-    text-align: center;
   }
 }
