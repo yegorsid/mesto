@@ -7,9 +7,9 @@
   <title>Место</title>
 </head>
 <body class="page">
-  <div class="popup">
+  <div class="popup" id="edit-profle">
     <div class="popup__container">
-      <button class="popup__close-button opacity"></button>
+      <button class="popup__close-button opacity" id="close-edit-popup"></button>
       <form class="form">
         <h3 class="form__heading">Редактировать профиль</h3>
         <fieldset class="form__input-container">
@@ -18,6 +18,21 @@
         </fieldset>
         <fieldset class="form__button-container">
           <button class="form__button">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="add-card">
+    <div class="popup__container">
+      <button class="popup__close-button opacity" id="close-add-popup"></button>
+      <form class="form" id="create-card">
+        <h3 class="form__heading">Новое место</h3>
+        <fieldset class="form__input-container">
+          <input type="text" class="form__input" id="card-name" placeholder="Название" required>
+          <input type="text" class="form__input" id="image-link" placeholder="Ссылка на картинку" required>
+        </fieldset>
+        <fieldset class="form__button-container">
+          <button class="form__button" >Создать</button>
         </fieldset>
       </form>
     </div>
@@ -39,54 +54,31 @@
         <button class="profile__add-button opacity"></button>
       </section>
       <section class="cards">
-        <div class="card">
-          <img src="./images/temple.png" alt="Карачаевск" class="card__image">
-          <div class="card__elements">
-            <h2 class="card__name">Карачаевск</h2>
-            <button class="card__like"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
-          <div class="card__elements">
-            <h2 class="card__name">Гора Эльбрус</h2>
-            <button class="card__like"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/dombay.png" alt="Домбай" class="card__image">
-          <div class="card__elements">
-            <h2 class="card__name">Домбай</h2>
-            <button class="card__like"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/elbrus.png" alt="Эльбрус" class="card__image">
-          <div class="card__elements">
-            <h2 class="card__name">Гора Эльбрус</h2>
-            <button class="card__like"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/dombay.png" alt="Домбай" class="card__image">
-          <div class="card__elements">
-            <h2 class="card__name">Домбай</h2>
-            <button class="card__like"></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/temple.png" alt="Карачаевск" class="card__image">
-          <div class="card__elements">
-            <h2 class="card__name">Карачаево-Черкесия</h2>
-            <button class="card__like"></button>
-          </div>
-        </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2022 Mesto Russia</p>
     </footer>
   </div>
+  <template id="create-card-template">
+    <div class="card">
+      <img src="#" alt="#" class="card__image">
+      <button class="card__trash opacity"></button>
+      <div class="card__elements">
+        <h2 class="card__name"></h2>
+        <button class="card__like"></button>
+      </div>
+    </div>
+  </template>
+  <template id="zoom-image">
+    <div class="popup" id="opn-img">
+      <div class="popup__image-container">
+        <button class="popup__close-button opacity" id="close-img-popup"></button>
+        <img src="#" alt="#" class="popup__image">
+        <p class="popup__title"></p>
+      </div>
+    </div>
+  </template>
   <script src="./script/index.js"></script>
 </body>
 </html>
