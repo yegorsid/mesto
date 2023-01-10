@@ -43,6 +43,25 @@ const profileForm = document.querySelector('.form');
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const zoomInPopupImg = document.querySelector('.popup__image');
 const zoomInPopupTxt = document.querySelector('.popup__title');
+const popups = document.querySelectorAll('.popup');
+
+popups.forEach((popup) => {
+  const closestPopup = popup.closest('.popup');
+  closestPopup.addEventListener('click', function(evt) {
+    if(!evt.defaultPrevented) {
+      closePopup(popup);
+    }
+  });
+  const popupContainers = document.querySelectorAll('.popup__container');
+  popupContainers.forEach((popupContainer) => {
+    const closestPopupContainer = popupContainer.closest('.popup__container');
+    closestPopupContainer.addEventListener('click', function(evt) {
+      if(!evt.target.classList.contains('form__button')) {
+        evt.preventDefault();
+      }
+    })
+  });
+});
 
 popupCloseButtons.forEach((button) => {
   const popup = button.closest('.popup');
@@ -95,8 +114,7 @@ const addCard = (event) => {
   const link = imageLinkInput.value;
   const name = cardNameInput.value;  
   renderCard({name, link});
-  cardNameInput.value = '';
-  imageLinkInput.value = '';
+  event.target.reset();
   closePopup(addCardPopup);
 };
 
@@ -111,14 +129,23 @@ cardsContainer.append(...initialCards.map(createCard));
 
 createCardButton.addEventListener('submit', addCard);
 
-editButton.addEventListener('click', function() {
-  openPopup(editProfilePopup);
+editButton.addEventListener('click', function() {  
   inputName.value = profileName.textContent;
   inputTitle.value = profileTitle.textContent;
+  actualizeData(editProfilePopup, validationConfig, true);
+  openPopup(editProfilePopup);
 });
 
 addButton.addEventListener('click', function() {
+  actualizeData(addCardPopup, validationConfig, false);
   openPopup(addCardPopup);
 });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
+
+page.addEventListener('keydown', function(evt) {
+  const openedPopup = document.querySelector('.popup_opened')
+  if (evt.key === 'Escape') {
+    closePopup(openedPopup);
+  }
+});
