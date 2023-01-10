@@ -36,8 +36,10 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(inputList, buttonElement, config) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 };
 
@@ -57,7 +59,7 @@ function actualizeData(formElement, config, editPopup) {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config);
-  if (editPopup === true) {
+  if (editPopup) {
     inputList.forEach((inputElement) => {
       checkInputValidity(formElement, inputElement, config);
       toggleButtonState(inputList, buttonElement, config);
