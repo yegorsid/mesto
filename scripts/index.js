@@ -45,17 +45,10 @@ const popupZoomInImg = document.querySelector('.popup__image');
 const popupZoomInTxt = document.querySelector('.popup__title');
 const popups = document.querySelectorAll('.popup');
 
-popups.forEach((popup) => {
-  const closestPopup = popup.closest('.popup');
-  closestPopup.addEventListener('click', function(evt) {
-    if(!evt.defaultPrevented) {
-      closePopup(popup);
-    }
-  });
-  const closestPopupContainer = closestPopup.querySelector('.popup__container');
-  closestPopupContainer.addEventListener('click', function(evt) {
-    if(!evt.target.classList.contains('form__button')) {
-      evt.preventDefault();
+popups.forEach((popup) => {  
+  popup.addEventListener('click', function(evt) {
+    if(evt.target.classList.contains('popup')) {
+      closePopup(popup)
     }
   });
 });
