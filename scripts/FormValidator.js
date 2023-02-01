@@ -2,7 +2,6 @@ class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
-    
   }
 
   _showInputError(inputElement) {
@@ -59,7 +58,7 @@ class FormValidator {
     this._toggleButtonState();
     if (editPopup) {
       inputList.forEach((inputElement) => {
-       this._checkInputValidity(inputElement);
+        this._checkInputValidity(inputElement);
         this._toggleButtonState(inputList, buttonElement);
       });
     }  
