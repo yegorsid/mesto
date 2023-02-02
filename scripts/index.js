@@ -2,8 +2,7 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
 const validationConfig = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
+    inputSelector: '.form__input',
   submitButtonSelector: '.form__button',
   inactiveButtonClass: 'form__button_inactive',
   inputErrorClass: 'form__input-red',
@@ -43,14 +42,14 @@ const profileEditPopup = document.querySelector('#edit-profle');
 const cardAddPopup = document.querySelector('#add-card');
 const popupZoomIn = document.querySelector('#opn-img');
 const cardsContainer = document.querySelector('.cards');
-const buttonCardAddSubmit = document.querySelector('#create-card');
+const formCardAddSubmit = document.querySelector('#create-card');
 const cardNameInput = document.querySelector('#card-name');
 const imageLinkInput = document.querySelector('#image-link');
 const profileName = document.querySelector('.profile__name');
 const profileTitle = document.querySelector('.profile__title');
-const inputName = document.getElementById('name');
-const inputTitle = document.getElementById('title');
-const profileForm = document.querySelector('.form');
+const inputName = document.querySelector('#name');
+const inputTitle = document.querySelector('#title');
+const profileForm = profileEditPopup.querySelector('.form');
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const popupZoomInImg = document.querySelector('.popup__image');
 const popupZoomInTxt = document.querySelector('.popup__title');
@@ -101,7 +100,7 @@ const renderZoom = ({name, link}) => {
 };
 
 const renderCard = ({name, link}) => {
-  const newCard = new Card({name, link}, function() {
+  const newCard = new Card({name, link}, '#create-card-template', function() {
     renderZoom({name, link})
   });
   cardsContainer.prepend(newCard.getView());
@@ -124,7 +123,7 @@ enableEditFormValidation.enableValidation();
 
 cardsContainer.append(...initialCards.map(renderCard));
 
-buttonCardAddSubmit.addEventListener('submit', addCard);
+formCardAddSubmit.addEventListener('submit', addCard);
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
