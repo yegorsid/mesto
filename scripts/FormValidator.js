@@ -2,10 +2,8 @@ class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
-    const inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
-    const buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
-    this._inputList = inputList;
-    this._buttonElement = buttonElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
   }
 
   _showInputError(inputElement) {
@@ -53,13 +51,13 @@ class FormValidator {
     });
   }
   
-  actualizeData(editPopup) {
-    if (editPopup) {
+  actualizeData(checkInputs) {
+    if (checkInputs) {
       this._inputList.forEach((inputElement) => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
       });
-    }  
+    }
+    this._toggleButtonState();  
   }
 
   enableValidation() {
