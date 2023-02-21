@@ -1,8 +1,8 @@
 class Card {
-  constructor({name, link}, templateSelector, renderZoom) {
+  constructor({name, link}, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
-    this._renderZoom = renderZoom;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   }
 
@@ -42,7 +42,7 @@ class Card {
     });
 
     this._cardImage.addEventListener('click', () => {
-      this._renderZoom()
+      this._handleCardClick(this._name, this._link);
     });
   }
 
