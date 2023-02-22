@@ -30,30 +30,30 @@ const userInfo = new UserInfo({
 
 const popupWithImage = new PopupWithImage('#opn-img');
 
+function returnCard({name, link}) {
+  const newCard = new Card({name, link}, '#create-card-template', function() { 
+    popupWithImage.open({name, link}) 
+  });
+
+  const cardElement = newCard.getView();
+  return cardElement;
+}
+
 const defaultCards = new Section({
   items: initialCards,
   renderer: ({name, link}) => {
-    const newCard = new Card({name, link}, '#create-card-template', function() {
-      popupWithImage.open({name, link})
-    });
-    
-    defaultCards.addItem(newCard.getView());
-  }
+    defaultCards.addItem(returnCard({name, link}))}
 }, '.cards');
+
+const cardsAdding = new PopupWithForm('#add-card', function({name, link}) {
+  defaultCards.addItem(returnCard({name, link}))}
+);
+
+defaultCards.renderItems();
 
 const profileEditing = new PopupWithForm('#edit-profle', function(userData) {
   userInfo.setUserData(userData)
 });
-
-const cardsAdding = new PopupWithForm('#add-card', function({name, link}) {
-  const newCard = new Card({name, link}, '#create-card-template', function() {
-    popupWithImage.open({name, link})
-  });
-  
-  defaultCards.addItem(newCard.getView());
-});
-
-defaultCards.renderItems();
 
 buttonEditProfile.addEventListener('click', function() {  
   const data = userInfo.getUserInfo();
