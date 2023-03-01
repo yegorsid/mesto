@@ -59,7 +59,7 @@ function returnCard(item) {
     popupWithImage.open(item.name, item.link) 
   },
   function(id, cardLayout) {
-    confirmation.open(id, cardLayout)
+    popupConfirmation.open(id, cardLayout)
   },
   userInfo.getUserId(),
   function(request, cardId) {
@@ -80,64 +80,64 @@ function returnCard(item) {
 const defaultCards = new Section(
   (item) => {defaultCards.addItem(returnCard(item))}, '.cards');
 
-const cardsAdding = new PopupWithForm('#add-card', function(item) {
-  cardsAdding.toggleBtnText(true, `Создать`);
+const popupAddCard = new PopupWithForm('#add-card', function(item) {
+  popupAddCard.toggleBtnText(true, `Создать`);
   api.createCard(item)
   .then((res) => {
     defaultCards.addItem(returnCard(res))
   })
   .then(() => {
-    cardsAdding.close();
+    popupAddCard.close();
   })
   .catch((error) => {
     console.log(`Ошибка ${error} в попапе добавления карточки`)
   })
   .finally(() => {
-    cardsAdding.toggleBtnText(false, `Создать`);
+    popupAddCard.toggleBtnText(false, `Создать`);
   })
 });
 
-const profileEditing = new PopupWithForm('#edit-profle', function(userData) {
-  profileEditing.toggleBtnText(true, `Сохранить`);
+const popupEditProfile = new PopupWithForm('#edit-profle', function(userData) {
+  popupEditProfile.toggleBtnText(true, `Сохранить`);
   api.applyUserData(userData)
   .then((res) => {
     userInfo.setUserData(res)
   })
   .then(() => {
-    profileEditing.close();
+    popupEditProfile.close();
   })
   .catch((error) => {
     console.log(`Ошибка ${error} в попапе изменения текста профиля`)
   })
   .finally(() => {
-    profileEditing.toggleBtnText(false, `Сохранить`);
+    popupEditProfile.toggleBtnText(false, `Сохранить`);
   })
 });
 
-const avatarUploading = new PopupWithForm('#upload-avatar', function(avatar) {
-  avatarUploading.toggleBtnText(true, `Сохранить`);
+const popupUpdateAvatar = new PopupWithForm('#upload-avatar', function(avatar) {
+  popupUpdateAvatar.toggleBtnText(true, `Сохранить`);
   api.changeAvatarImg(avatar.link)
   .then((res) => {
     userInfo.setUserData(res);
   })
   .then(() => {
-    avatarUploading.close();
+    popupUpdateAvatar.close();
   })
   .catch((error) => {
     console.log(`Ошибка ${error} в попапе изменения автара`)
   })
   .finally(() => {
-    avatarUploading.toggleBtnText(false, `Сохранить`);
+    popupUpdateAvatar.toggleBtnText(false, `Сохранить`);
   })
 });
 
-const confirmation = new PopupWithConfirmation('#confirm', function(id, cardLayout) {
+const popupConfirmation = new PopupWithConfirmation('#confirm', function(id, cardLayout) {
   api.deleteCard(id)
   .then(() => {
     cardLayout.remove();
   })
   .then(() => {
-    confirmation.close();
+    popupConfirmation.close();
   })
   .catch((error) => {
     console.log(`Ошибка ${error} в попапе подтверждения`);
@@ -149,25 +149,25 @@ buttonEditProfile.addEventListener('click', function() {
   inputName.value = data.name;
   inputTitle.value = data.description;
   enableEditFormValidation.actualizeData(true);
-  profileEditing.open();
+  popupEditProfile.open();
 });
 
 buttonAddCard.addEventListener('click', function() {
   enableAddFormValidation.actualizeData(false);
-  cardsAdding.open();
+  popupAddCard.open();
 });
 
 buttonChangeAvatar.addEventListener('click', function() {
   enableEditAvatarValidation.actualizeData(false);
-  avatarUploading.open();
+  popupUpdateAvatar.open();
 });
 
-profileEditing.setEventListeners();
+popupEditProfile.setEventListeners();
 
-cardsAdding.setEventListeners();
+popupAddCard.setEventListeners();
 
 popupWithImage.setEventListeners();
 
-avatarUploading.setEventListeners();
+popupUpdateAvatar.setEventListeners();
 
-confirmation.setEventListeners();
+popupConfirmation.setEventListeners();
