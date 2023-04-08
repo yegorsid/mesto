@@ -11,7 +11,6 @@ export default class PopupWithImage extends Popup {
     this._popupZoomInImg.src = link;
     this._popupZoomInImg.alt = name;
     this._popupZoomInTxt.textContent = name;
-    super.open();
-    
+    super.open();    
   }
 }
