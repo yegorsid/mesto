@@ -1,13 +1,11 @@
-# Проект: Место
+# Mesto JavaScript
 
-### Обзор
-* Описание
-* GitHub Pages
+This is my training project on Yandex Praktikum. 
 
-**Описание**
+Page layout was made with **CSS** instruments such as media queries, flex and grid. 
 
-Место - мой учебный проект на Яндекс Практикуме. Для верстки страницы использовались медиазапросы, flex, grid. С помощью JavaScript и парадигмы ООП реализован функционал создания карточек и валидации форм. Классы также использованы в функционале попапов. Проект собран с помощью webpack.
+The app functionality was implemented using **pure JavaScript** and the **OOP paradigm**. 
 
-**GitHub Pages**
+The project is built using **Webpack**.
 
-* [Ссылка на GitHub Pages](https://skavr666.github.io/mesto/)
+[Link to GitHub Pages](https://yegorsid.github.io/mesto/)
